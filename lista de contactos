@@ -1,0 +1,359 @@
+using System;
+
+namespace examen_parcial
+{
+    class Program
+    {
+
+        static string[] nombres = new string[10];
+        static string[] apellido1 = new string[10];
+        static string[] telefono1 = new string[10];
+
+        static void Main(string[] args)
+        {
+            /*
+             * Realizar una aplicación que permita registrar contactos telefónicos , también editarlo , listarlo y eliminarlo.
+             * Del contacto se debe pedir los siguientes datos: su nombre , apellido y numero telefónico.
+
+              El sistema debe de validar que el contacto que se este ingresado no tenga un numero de teléfono que ya este registrado , 
+              si existe alguien con ese numero de teléfono debe indicarle que existe y enviarlo al menu principal , 
+              en caso de que sea valido pues lo permite agregar, 
+              solo se validara los teléfonos al momento de agregar un nuevo contacto para el editar no lo tomaremos en cuenta por cuestiones de tiempo
+
+               */
+            Menu();
+
+
+        }
+        static void Menu()
+        {
+
+
+
+            bool cierre = false;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("seleciones una occion \n");
+                Console.WriteLine(" 1: agregar contactos \n 2: editar contactos \n 3: listar contactos \n 4: eliminar contactos \n 5: salir del programa ");
+                int num1 = Int32.Parse(Console.ReadLine());
+
+                switch (num1)
+                {
+                    case 1:
+                        datos();
+
+
+                        break;
+                    case 2:
+                        editar();
+                        break;
+
+                    case 3:
+                        lista();
+                        break;
+                    case 4:
+                        borrar();
+                        break;
+                    case 5:
+                        cierre = true;
+                        break;
+
+
+                }
+                if (cierre)
+                {
+                    break;
+                }
+
+            }
+
+        }
+        static void datos()
+        {
+            nombre();
+            apellido();
+            telefono();
+
+
+        }
+        static void nombre()
+        {
+            if (string.IsNullOrEmpty(nombres[9]))
+            {
+                Console.WriteLine("introdusca el nombre : ");
+                string cont = Console.ReadLine();
+
+                for (int i = 0; i < nombres.Length; i++)
+                {
+
+                    string elemento = nombres[i];
+
+                    if (string.IsNullOrEmpty(elemento))
+                    {
+                        nombres[i] = cont;
+                        break;
+                    }
+
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("la lista de contactos esta llena ");
+                Console.ReadKey();
+            }
+
+
+
+        }
+        static void apellido()
+        {
+            if (string.IsNullOrEmpty(apellido1[9]))
+            {
+                Console.WriteLine("introdusca el apellido :  ");
+                string cont = Console.ReadLine();
+
+                for (int i = 0; i < apellido1.Length; i++)
+                {
+
+                    string elemento = apellido1[i];
+
+                    if (string.IsNullOrEmpty(elemento))
+                    {
+                        apellido1[i] = cont;
+                        break;
+                    }
+
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("la lista de contactos esta llena ");
+                Console.ReadKey();
+            }
+
+
+        }
+        static void telefono()
+        {
+            if (string.IsNullOrEmpty(telefono1[9]))
+            {
+                Console.WriteLine("introdusca el numero de telefono  :  ");
+                string cont = Console.ReadLine();
+
+                for (int i = 0; i < telefono1.Length; i++)
+                {
+
+                    string elemento = telefono1[i];
+
+                    if (string.IsNullOrEmpty(elemento))
+                    {
+                        telefono1[i] = cont;
+                        break;
+                    }
+
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("la lista de contactos esta llena ");
+                Console.ReadKey();
+            }
+
+
+        }
+        static void lista()
+        {
+            Console.WriteLine("esta es la lista de contactos: \n ");
+            Console.WriteLine("esta es la lista de todos los nombres :\n ");
+            foreach (var i in nombres)
+            {
+                Console.WriteLine("estos son los nombres : {0}", i);
+
+            }
+            Console.ReadKey();
+            Console.WriteLine("");
+
+            Console.WriteLine("estos son los apellidos de los contactos  :\n ");
+            foreach (var i in apellido1)
+            {
+                Console.WriteLine("estos son los apellido : {0}", i);
+
+            }
+            Console.ReadKey();
+            Console.WriteLine("");
+
+            Console.WriteLine("estos son los numeros telefonicos de los contactos  :\n ");
+            foreach (var i in telefono1)
+            {
+                Console.WriteLine("estos son los telefonos : {0}", i);
+
+            }
+            Console.WriteLine("");
+            Console.ReadKey();
+        }
+        static void borrar()
+        {
+            if (string.IsNullOrEmpty(nombres[0]) && string.IsNullOrEmpty(nombres[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista ");
+                Console.ReadKey();
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                for (int i = 0; i < nombres.Length; i++)
+                {
+
+                    string elemento = nombres[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar ");
+
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+                nombres[nu1 - 1] = null;
+            }
+            if (string.IsNullOrEmpty(apellido1[0]) && string.IsNullOrEmpty(apellido1[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista ");
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                for (int i = 0; i < apellido1.Length; i++)
+                {
+
+                    string elemento = apellido1[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar ");
+
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+                apellido1[nu1 - 1] = null;
+            }
+            if (string.IsNullOrEmpty(telefono1[0]) && string.IsNullOrEmpty(telefono1[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista ");
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                for (int i = 0; i < telefono1.Length; i++)
+                {
+
+                    string elemento = telefono1[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar ");
+
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+                telefono1[nu1 - 1] = null;
+            }
+
+
+        }
+        static void editar()
+        {
+            if (string.IsNullOrEmpty(nombres[0]) && string.IsNullOrEmpty(nombres[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista ");
+                Console.ReadKey();
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                Console.WriteLine(" lista de todos los nombres :\n");
+                for (int i = 0; i < nombres.Length; i++)
+                {
+
+                    string elemento = nombres[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar ");
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("introdusca el nuevo nombre :");
+                string nom1 = Console.ReadLine();
+
+                nombres[nu1 - 1] = nom1;
+                Console.ReadKey();
+
+            }
+            if (string.IsNullOrEmpty(apellido1[0]) && string.IsNullOrEmpty(apellido1[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista ");
+                Console.ReadKey();
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                Console.WriteLine(" lista de todos los apellidos :\n");
+                for (int i = 0; i < apellido1.Length; i++)
+                {
+
+                    string elemento = apellido1[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar : \n");
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("introdusca el apellido :");
+                string nom1 = Console.ReadLine();
+
+                apellido1[nu1 - 1] = nom1;
+                Console.ReadKey();
+
+            }
+            if (string.IsNullOrEmpty(telefono1[0]) && string.IsNullOrEmpty(telefono1[1]))
+            {
+                Console.WriteLine("no se ha introducido ningun contacto en la lista : ");
+                Console.ReadKey();
+
+            }
+            else
+            {
+                Console.WriteLine(" esta es la lista de contactos actual :\n");
+                Console.WriteLine(" lista de todos los telefonos :\n");
+                for (int i = 0; i < telefono1.Length; i++)
+                {
+
+                    string elemento = telefono1[i];
+
+                    Console.WriteLine((i + 1) + " - " + elemento);
+                }
+
+                Console.WriteLine("introduce el numero del contacto que deseas cambiar : \n ");
+                int nu1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("introdusca el telefono :");
+                string nom1 = Console.ReadLine();
+
+
+                telefono1[nu1 - 1] = nom1;
+                Console.ReadKey();
+            }
+        }
+    }
+}  
+
